@@ -1,10 +1,10 @@
 5 'AMTron 0.2b By Fabrizio Radica - www.retroacademy.it
 10 DEFINT a-z:pu=0
-15 MODE 0:LOAD "main.scr":CALL &C7D0
+15 'MODE 0:LOAD "main.scr":CALL &C7D0
 18 gosub 10010
 20 MODE 1:DIM arena(41,26):BORDER 0:INK 0,0
-30 CLS:x=5:xp=19:yp=11:y=5:vx=1:vy=1:s=1::sx=0:sy=-s:sp=1
-40 LOAD "wall2.scr":CALL &C7D0:INK 1,26:INK 5,26,3
+30 CLS:x=5:xp=19:yp=11:y=5:vx=.5:vy=.5:s=1::sx=0:sy=-s:sp=1
+40 'LOAD "wall2.scr":CALL &C7D0:INK 1,26:INK 5,26,3
 45 LOCATE 1,25:PRINT "...SYST3M F4ILUR3...";
 50 FOR y=1 TO 24
 100 FOR x=1 TO 40
@@ -21,7 +21,7 @@
 1000 IF INKEY(8)=0 THEN sy=0:sx=-s
 1100 GOSUB 5000:vx=vx+sx:vy=vy+sy
 1200 WEND
-5000 ax=INT(xp+(vx/sp)):ay=INT(yp+(vy/sp))
+5000 ax=INT(xp+(vx/sp*0.5)):ay=INT(yp+(vy/sp*0.5))
 6000 PEN 2:LOCATE ax,ay:PRINT CHR$(233);:arena(ax,ay)=1:SOUND 1,300,1
 6100 IF arena(ax+sx,ay+sy)=1 THEN SOUND 1,800,10,15,2,10,1:GOTO 30
 6200 IF arena(ax+sx,ay+sy)=2 THEN pu=pu+1:LOCATE 1,25:PRINT pu;:arena(ax+sx,ay+sy)=0:LOCATE ax+sx,ay+sy:PRINT " ";: SOUND 1,100,5
